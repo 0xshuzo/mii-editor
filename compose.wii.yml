@@ -1,0 +1,36 @@
+name: mii-editor-wii
+
+services:
+  wii-dev:
+    build:
+      context: .docker/wii
+      args:
+        DEVKITPPC_IMAGE: ${DEVKITPPC_IMAGE:-devkitpro/devkitppc:latest}
+        DEV_UID: ${DEV_UID:-1000}
+        DEV_GID: ${DEV_GID:-1000}
+    image: mii-editor-wii-dev:local
+    container_name: mii-editor-wii-dev
+    init: true
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${WII_SSH_PORT:-2222}:22"
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
+      - type: bind
+        source: ./.wii-ssh/authorized_keys
+        target: /home/developer/.ssh/authorized_keys
+        read_only: true
+      - type: volume
+        source: wii-ccache
+        target: /home/developer/.cache/ccache
+      - type: volume
+        source: wii-ssh-host-keys
+        target: /var/lib/wii-sshd
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  wii-ccache:
+  wii-ssh-host-keys:

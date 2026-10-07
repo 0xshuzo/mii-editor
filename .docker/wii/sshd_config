@@ -1,0 +1,29 @@
+# Only the local host can reach this service; Compose binds the published port
+# to 127.0.0.1. Authentication is deliberately key-only.
+Port 22
+HostKey /var/lib/wii-sshd/ssh_host_ed25519_key
+HostKey /var/lib/wii-sshd/ssh_host_rsa_key
+PidFile /run/sshd.pid
+
+PermitRootLogin no
+AllowUsers developer
+PasswordAuthentication no
+PermitEmptyPasswords no
+KbdInteractiveAuthentication no
+ChallengeResponseAuthentication no
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+UsePAM no
+
+# sshd starts user sessions with a deliberately small environment. Re-state the
+# toolchain environment here so non-interactive Remote-SSH commands and normal
+# VSCodium terminals behave identically.
+SetEnv DEVKITPRO=/opt/devkitpro DEVKITPPC=/opt/devkitpro/devkitPPC CCACHE_DIR=/home/developer/.cache/ccache CCACHE_COMPILERCHECK=content PATH=/opt/devkitpro/devkitPPC/bin:/opt/devkitpro/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+AllowTcpForwarding yes
+AllowAgentForwarding no
+GatewayPorts no
+PermitTunnel no
+X11Forwarding no
+PrintMotd no
+LogLevel VERBOSE

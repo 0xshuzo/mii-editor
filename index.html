@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#dceeff" />
+    <title>Mii Editor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-window" aria-label="Mii Editor">
+      <header class="titlebar">
+        <div class="brand">
+          <div class="mini-avatar avatar avatar-sora" aria-hidden="true"><i class="hair"></i><i class="face"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></div>
+          <strong>Mii Editor</strong>
+        </div>
+        <p>Customize Mii names</p>
+        <div class="window-actions" aria-label="Window controls">
+          <button type="button" aria-label="Minimize" data-window-action="minimize"><span class="minus"></span></button>
+          <button type="button" aria-label="Maximize" data-window-action="maximize"><span class="square"></span></button>
+          <button type="button" aria-label="Close" data-window-action="close"><span class="cross"></span></button>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <aside class="mii-sidebar" aria-labelledby="mii-list-heading">
+          <div class="section-title"><h1 id="mii-list-heading">My Miis</h1><span id="mii-count">6 / 12</span></div>
+          <div class="mii-list" id="mii-list" role="listbox" aria-label="My Miis"></div>
+        </aside>
+
+        <section class="details-panel" aria-labelledby="details-heading">
+          <h2 id="details-heading">Mii Details</h2>
+          <div class="details-content">
+            <section class="portrait-stage" aria-label="Selected Mii">
+              <div class="spotlight"></div>
+              <div class="mii-figure avatar-sora" id="main-mii" aria-label="Sora">
+                <div class="body"><i class="neck"></i><i class="shirt"></i><i class="arm left"></i><i class="arm right"></i><i class="hand left"></i><i class="hand right"></i><i class="leg left"></i><i class="leg right"></i><i class="shoe left"></i><i class="shoe right"></i></div>
+                <div class="head"><i class="ear left"></i><i class="ear right"></i><i class="hair back"></i><i class="face"></i><i class="hair fringe"></i><i class="brow left"></i><i class="brow right"></i><i class="eye left"></i><i class="eye right"></i><i class="nose"></i><i class="cheek left"></i><i class="cheek right"></i><i class="smile"></i></div>
+              </div>
+              <div class="podium"><div></div></div>
+            </section>
+
+            <form class="editor-form" id="editor-form">
+              <label class="form-card">
+                <span>Mii Name</span>
+                <input id="mii-name" name="miiName" type="text" readonly aria-readonly="true" />
+              </label>
+              <label class="form-card active-input">
+                <span>Nickname</span>
+                <input id="nickname" name="nickname" type="text" readonly aria-readonly="true" />
+              </label>
+              <article class="info-card">
+                <div class="info-heading"><b>i</b><strong>Info</strong></div>
+                <p>Choose the nickname used to identify this Mii.</p>
+              </article>
+            </form>
+          </div>
+        </section>
+      </section>
+
+      <footer class="footerbar">
+        <button class="settings-button" type="button" id="settings-button"><span aria-hidden="true">⚙</span> Settings</button>
+        <div class="form-actions">
+          <button class="button secondary" type="button" id="cancel-button">Cancel</button>
+          <button class="button primary" type="submit" form="editor-form">Save</button>
+        </div>
+      </footer>
+    </main>
+    <div class="rename-overlay" id="rename-overlay" aria-hidden="true">
+      <section class="rename-dialog" role="dialog" aria-modal="true" aria-labelledby="rename-title" aria-describedby="rename-description">
+        <header class="rename-header">
+          <div>
+            <h2 id="rename-title">Edit nickname</h2>
+            <p id="rename-description">Enter a new name for this Mii.</p>
+          </div>
+        </header>
+        <div class="rename-content">
+          <div class="mock-name-field" aria-label="Current nickname">
+            <span>Sora</span><i class="mock-caret" aria-hidden="true"></i>
+          </div>
+          <div class="keyboard-tools" aria-label="Keyboard category">
+            <button class="keyboard-tab selected" type="button">Letters</button><button class="keyboard-tab" type="button">Symbols</button>
+            <div class="symbol-strip" aria-label="Symbols"><button type="button">★</button><button type="button">☆</button><button type="button">♥</button><button type="button">♪</button><button type="button">☀</button><button type="button">☁</button><button type="button">☂</button><button type="button">♛</button><button type="button">◉</button><button type="button">◒</button><button type="button">◐</button><button type="button">🏆</button></div>
+          </div>
+          <div class="keyboard-grid" aria-label="On-screen keyboard">
+            <div class="key-row number-row"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button><button type="button">6</button><button type="button">7</button><button type="button">8</button><button type="button">9</button><button type="button">0</button><button type="button">-</button><button type="button">=</button><button class="delete-key" type="button"><b>×</b><small>Delete</small></button></div>
+            <div class="key-row letter-row"><button type="button">q</button><button type="button">w</button><button type="button">e</button><button class="is-pressed" type="button">r</button><button type="button">t</button><button type="button">y</button><button type="button">u</button><button type="button">i</button><button type="button">o</button><button type="button">p</button><button type="button">[</button><button type="button">]</button></div>
+            <div class="key-row middle-row"><i aria-hidden="true"></i><button type="button">a</button><button type="button">s</button><button type="button">d</button><button type="button">f</button><button type="button">g</button><button type="button">h</button><button type="button">j</button><button type="button">k</button><button type="button">l</button><button type="button">;</button><button type="button">'</button><button type="button">#</button></div>
+            <div class="key-row shift-row"><button class="shift-key" type="button"><b>⇧</b><small>Shift</small></button><button type="button">z</button><button type="button">x</button><button type="button">c</button><button type="button">v</button><button type="button">b</button><button type="button">n</button><button type="button">m</button><button type="button">,</button><button type="button">.</button><button type="button">/</button></div>
+            <div class="key-row bottom-row"><button type="button">@</button><button type="button">#&amp;?</button><button class="space-key" type="button"><span>②</span> Space</button><button class="done-key" type="button" data-modal-close><span>＋</span> Done</button></div>
+          </div>
+        </div>
+        <footer class="rename-footer">
+          <button class="dialog-cancel" type="button" data-modal-close>Cancel</button>
+          <div class="controller-hints" aria-label="Controller hints"><span><b>A</b> Select</span><span><b>B</b> Delete</span><span><b>2</b> Space</span><span><b>＋</b> Done</span></div>
+        </footer>
+      </section>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
