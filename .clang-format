@@ -1,0 +1,9 @@
+---
+# LLVM is a widely used C/C++ base style. Use 1TBS explicitly: opening braces
+# stay on the control/function line and `else` follows the closing brace.
+BasedOnStyle: LLVM
+Language: C
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+BreakBeforeBraces: Attach

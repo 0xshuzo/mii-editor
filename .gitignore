@@ -23,6 +23,9 @@ playwright-report/
 test-results/
 mii-*.png
 
+# CMake's local cross-compilation output.
+build/
+
 # Operating-system metadata.
 .DS_Store
 Thumbs.db

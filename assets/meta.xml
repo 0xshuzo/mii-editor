@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<app version="1">
+  <name>Mii Editor</name>
+  <coder>shuzo</coder>
+  <version>0.1.0</version>
+  <release_date>20261007000000</release_date>
+  <short_description>Wii Remote UI prototype</short_description>
+  <long_description>
+    First UI-only prototype for a Mii name editor.
+    Point at the Nickname field with a Wii Remote and press A to open the
+    placeholder on-screen keyboard. No Mii data is loaded or saved yet.
+  </long_description>
+  <arguments />
+</app>

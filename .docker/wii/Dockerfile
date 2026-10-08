@@ -10,6 +10,7 @@ USER root
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         ca-certificates \
+        cmake \
         ccache \
         curl \
         file \
@@ -30,7 +31,7 @@ RUN groupadd --gid "${DEV_GID}" developer \
     && useradd --uid "${DEV_UID}" --gid "${DEV_GID}" --create-home --shell /bin/bash developer \
     && passwd -d developer \
     && install -d -o developer -g developer -m 0700 /home/developer/.ssh \
-    && install -d -o developer -g developer -m 0755 /workspace /home/developer/.cache/ccache \
+    && install -d -o developer -g developer -m 0755 /workspace /home/developer/.cache /home/developer/.cache/ccache \
     && install -d -m 0755 /run/sshd \
     && install -d -m 0700 /var/lib/wii-sshd
 

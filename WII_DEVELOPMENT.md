@@ -56,11 +56,19 @@ Host mii-editor-wii
 
 Use **Remote - SSH: Connect to Host...** → `mii-editor-wii`, then open `/workspace`.
 The normal terminal is already configured with `DEVKITPRO`, `DEVKITPPC`, and
-`PATH` for devkitPPC. A typical project simply builds with:
+`PATH` for devkitPPC.
+
+## Build the Mii Editor UI
+
+Configure and build the Homebrew Channel app from the project root:
 
 ```bash
-make -j"$(nproc)"
+cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=cmake/wii-toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel
 ```
+
+The deployable folder is `build/apps/mii-editor/`. Copy it to the `apps/`
+directory of a FAT32-formatted Wii SD card before launching it in the Homebrew Channel.
 
 ## Verify toolchain and connection
 
