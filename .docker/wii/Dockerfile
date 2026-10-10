@@ -32,7 +32,7 @@ RUN groupadd --gid "${DEV_GID}" developer \
     && passwd -d developer \
     && install -d -o developer -g developer -m 0700 /home/developer/.ssh \
     && install -d -o developer -g developer -m 0755 /workspace /home/developer/.cache /home/developer/.cache/ccache \
-    && install -d -m 0755 /run/sshd \
+    && install -d -m 0755 /run/sshd /run/wii-ssh \
     && install -d -m 0700 /var/lib/wii-sshd
 
 COPY sshd_config /etc/ssh/sshd_config.d/99-wii-development.conf

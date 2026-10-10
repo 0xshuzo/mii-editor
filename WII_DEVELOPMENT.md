@@ -21,11 +21,30 @@ From the project root:
 ./scripts/start-wii-container.sh
 ```
 
+On Windows, run this from PowerShell instead:
+
+```powershell
+.\scripts\start-wii-container.ps1
+```
+
+If PowerShell's execution policy blocks project scripts, use this one-time
+process invocation:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\start-wii-container.ps1
+```
+
 The first run creates the local SSH key and pulls/builds the image. It does
 not place a key in your normal `~/.ssh` directory. To use another port:
 
 ```bash
 WII_SSH_PORT=2223 ./scripts/start-wii-container.sh
+```
+
+The PowerShell equivalent is:
+
+```powershell
+$env:WII_SSH_PORT = '2223'; .\scripts\start-wii-container.ps1
 ```
 
 To pin the devkitPro base image instead of following its `latest` tag:

@@ -20,7 +20,7 @@ services:
         target: /workspace
       - type: bind
         source: ./.wii-ssh/authorized_keys
-        target: /home/developer/.ssh/authorized_keys
+        target: /run/wii-ssh/authorized_keys
         read_only: true
       - type: volume
         source: wii-ccache
